@@ -5,13 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "db_user")
+@Table(name = "jenis")
 @Getter
 @Setter
-
-public class db_user {
+public class Jenis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_user;
-    private String nama;
+    private int id_jenis;
+    private String value;
 }

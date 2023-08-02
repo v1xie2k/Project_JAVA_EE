@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "db_htrans")
+@Table(name = "periode")
 @Getter
 @Setter
-public class db_htrans {
+public class Periode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_user;
     private int id_periode;
-    private int id_jenis;
-    private double jumlah;
+    private String bulan;
+    private String tahun;
 }

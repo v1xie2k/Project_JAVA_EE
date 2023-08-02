@@ -5,14 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "db_periode")
+@Table(name = "user")
 @Getter
 @Setter
-
-public class db_periode {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_periode;
-    private String bulan;
-    private String tahun;
+    private int id_user;
+    private String nama;
 }

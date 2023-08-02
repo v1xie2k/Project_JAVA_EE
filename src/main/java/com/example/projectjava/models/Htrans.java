@@ -1,17 +1,23 @@
 package com.example.projectjava.models;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "db_jenis")
+@Table(name = "htrans")
 @Getter
 @Setter
-public class db_jenis {
+public class Htrans {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
+    private int id_user;
+    private int id_periode;
     private int id_jenis;
-    private String value;
+    private double jumlah;
+
+    private int status;
+    private String nama_user;
+    private String periode;
+    private String nama_jenis;
 }
