@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Htrans {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
+    private int id_htrans;
     private int id_user;
     private int id_periode;
     private int id_jenis;
