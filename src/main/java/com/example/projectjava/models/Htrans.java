@@ -11,14 +11,11 @@ import lombok.Setter;
 public class Htrans {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_htrans;
-    private int id_user;
-    private int id_periode;
-    private int id_jenis;
+    private int htransId;
+    private int userId;
+    private int periodeId;
+    private int jenisId;
     private double jumlah;
 
     private int status;
-    private String nama_user;
-    private String periode;
-    private String nama_jenis;
 }

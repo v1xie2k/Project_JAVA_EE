@@ -11,6 +11,6 @@ import lombok.Setter;
 public class Jenis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_jenis;
+    private int jenisId;
     private String value;
 }

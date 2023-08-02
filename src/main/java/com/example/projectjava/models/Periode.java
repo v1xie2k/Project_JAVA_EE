@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Periode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_periode;
+    private int periodeId;
     private String bulan;
     private String tahun;
 }

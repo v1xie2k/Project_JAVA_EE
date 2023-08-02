@@ -11,6 +11,6 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
-    private int id_user;
+    private int userId;
     private String nama;
 }
