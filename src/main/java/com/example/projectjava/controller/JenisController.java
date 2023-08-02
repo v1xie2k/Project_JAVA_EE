@@ -5,7 +5,9 @@ import com.example.projectjava.models.Periode;
 import com.example.projectjava.services.JenisServices;
 import com.example.projectjava.services.PeriodeServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,10 @@ public class JenisController {
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String saveJenis(Jenis obj) throws Exception {
         service.save(obj);
-        return "Success Add Jenis";
+        return "redirect:/success";
+    }
+    @GetMapping("/success")
+    public ResponseEntity<String> getSuccess() {
+        return new ResponseEntity<String>("Success Add Jenis", HttpStatus.OK);
     }
 }

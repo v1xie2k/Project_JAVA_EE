@@ -5,6 +5,7 @@ import com.example.projectjava.models.User;
 import com.example.projectjava.services.PeriodeServices;
 import com.example.projectjava.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,11 @@ public class PeriodeController {
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String savePeriode(Periode obj) throws Exception {
         service.save(obj);
-        return "Success Add Periode";
+        return "redirect:/success";
+    }
+
+    @GetMapping("/success")
+    public ResponseEntity<String> getSuccess() {
+        return new ResponseEntity<String>("Success Add Periode", HttpStatus.OK);
     }
 }

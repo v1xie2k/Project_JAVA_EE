@@ -4,6 +4,7 @@ import com.example.projectjava.models.User;
 import com.example.projectjava.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,11 @@ public class UserController {
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String saveUser(User obj) throws Exception {
         service.save(obj);
-        return "Success Add User";
+        return "redirect:/success";
+    }
+
+    @GetMapping("/success")
+    public ResponseEntity<String> getSuccess() {
+        return new ResponseEntity<String>("Success Add User", HttpStatus.OK);
     }
 }

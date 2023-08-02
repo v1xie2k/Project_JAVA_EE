@@ -5,6 +5,7 @@ import com.example.projectjava.models.Jenis;
 import com.example.projectjava.services.HtransServices;
 import com.example.projectjava.services.JenisServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,12 @@ public class HtransController {
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String saveJenis(Htrans obj) throws Exception {
         service.save(obj);
-        return "Success Add Htrans";
+        return "redirect:/success";
+    }
+    //ini coba dari https://www.baeldung.com/spring-url-encoded-form-data
+    //kalau tidak bisa di comment saja
+    @GetMapping("/success")
+    public ResponseEntity<String> getSuccess() {
+        return new ResponseEntity<String>("Success Add Htrans", HttpStatus.OK);
     }
 }
