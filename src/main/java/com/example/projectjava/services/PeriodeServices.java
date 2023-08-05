@@ -1,9 +1,7 @@
 package com.example.projectjava.services;
 
 import com.example.projectjava.models.Periode;
-import com.example.projectjava.models.User;
 import com.example.projectjava.repositories.PeriodeRepository;
-import com.example.projectjava.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +19,10 @@ public class PeriodeServices {
     public List<Periode> getAll(){
         return repo.findAll();
     }
+
+    public List<Periode> getSpecific(String bulan) {
+
+        return repo.findByBulan(bulan);
+    }
+
 }

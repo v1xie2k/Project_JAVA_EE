@@ -41,4 +41,9 @@ public class PeriodeController {
     public ResponseEntity<String> getSuccess() {
         return new ResponseEntity<String>("Success Add Periode", HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public List<Periode> getSpecificPeriode(@PathVariable String id){
+        return service.getSpecific(id);
+    }
 }
