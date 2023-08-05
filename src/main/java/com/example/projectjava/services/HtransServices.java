@@ -20,6 +20,4 @@ public class HtransServices {
     public List<Htrans> getAll(){
         return repo.findAll();
     }
-
-    public List<Htrans> getBudget(int periode){return repo.findByPeriodeId(periode);}
 }
