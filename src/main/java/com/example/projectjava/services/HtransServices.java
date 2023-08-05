@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 public class HtransServices {
@@ -19,5 +20,9 @@ public class HtransServices {
 
     public List<Htrans> getAll(){
         return repo.findAll();
+    }
+
+    public List<Htrans> getFiltered(Integer idPeriode, Integer idUser){
+        return repo.findByUserIdAndPeriodeId(idPeriode, idUser);
     }
 }
