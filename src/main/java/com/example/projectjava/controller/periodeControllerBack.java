@@ -1,14 +1,18 @@
 package com.example.projectjava.controller;
 
 
+import com.example.projectjava.models.Jenis;
 import com.example.projectjava.models.Periode;
 import com.example.projectjava.services.PeriodeServices;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,7 +22,7 @@ public class periodeControllerBack {
     @Autowired
     PeriodeServices service;
 
-    @GetMapping("/")
+    @GetMapping("/getAll")
     public List<Periode> getAllPeriode(){
         return service.getAll();
     }
@@ -29,12 +33,20 @@ public class periodeControllerBack {
 //        return ResponseEntity.ok("Data Saved");
 //    }
 
+    @GetMapping("/")
+    public List<Periode> getAllReal(){
+        String uri ="http://localhost:8080/periode/getAll";
+        RestTemplate restTemplate = new RestTemplate();
+        Periode[] result = restTemplate.getForObject(uri,Periode[].class);
+        return Arrays.asList(result);
+    }
+
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String savePeriode(Periode obj) throws Exception {
+    void savePeriode(Periode obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        return "redirect:/success";
+        response.sendRedirect("/index");
     }
 
     @GetMapping("/success")

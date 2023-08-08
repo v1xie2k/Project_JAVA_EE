@@ -1,7 +1,9 @@
 package com.example.projectjava.controller;
 
+import com.example.projectjava.models.Jenis;
 import com.example.projectjava.models.User;
 import com.example.projectjava.services.UserServices;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -19,7 +23,7 @@ public class UserController {
     @Autowired
     UserServices service;
 
-    @GetMapping("/")
+    @GetMapping("/getAll")
     public List<User> getAllUser(){
         return service.getAll();
     }
@@ -36,12 +40,20 @@ public class UserController {
 //        return ResponseEntity.ok("Data Saved");
 //    }
 
+    @GetMapping("/")
+    public List<User> getAllReal(){
+        String uri ="http://localhost:8080/user/getAll";
+        RestTemplate restTemplate = new RestTemplate();
+        User[] result = restTemplate.getForObject(uri,User[].class);
+        return Arrays.asList(result);
+    }
+
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String saveUser(User obj) throws Exception {
+    void saveUser(User obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        return "redirect:/success";
+        response.sendRedirect("/index");
     }
 
     @GetMapping("/success")

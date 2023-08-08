@@ -2,6 +2,7 @@ package com.example.projectjava.controller;
 
 import com.example.projectjava.models.Jenis;
 import com.example.projectjava.services.JenisServices;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,7 +29,7 @@ public class jenisControllerBack {
 
     @GetMapping("/")
     public List<Jenis> getAllReal(){
-        String uri ="http://localhost:8080/jenis/getAll";
+        String uri ="http://localhost:8080/jenisback/getAll";
         RestTemplate restTemplate = new RestTemplate();
         Jenis[] result = restTemplate.getForObject(uri,Jenis[].class);
         return Arrays.asList(result);
@@ -37,9 +38,9 @@ public class jenisControllerBack {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String saveJenis(Jenis obj) throws Exception {
+    void saveJenis(Jenis obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        return "redirect:/success";
+        response.sendRedirect("/index");
     }
     @GetMapping("/success")
     public ResponseEntity<String> getSuccess() {

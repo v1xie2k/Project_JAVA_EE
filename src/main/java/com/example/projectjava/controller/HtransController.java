@@ -2,6 +2,7 @@ package com.example.projectjava.controller;
 
 import com.example.projectjava.models.Htrans;
 import com.example.projectjava.services.HtransServices;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,9 +38,9 @@ public class HtransController {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String saveJenis(Htrans obj) throws Exception {
+    void saveJenis(Htrans obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        return "redirect:/success";
+        response.sendRedirect("/index");
     }
     //ini coba dari https://www.baeldung.com/spring-url-encoded-form-data
     //kalau tidak bisa di comment saja

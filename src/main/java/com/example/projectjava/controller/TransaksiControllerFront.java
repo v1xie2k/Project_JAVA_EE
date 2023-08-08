@@ -1,8 +1,6 @@
 package com.example.projectjava.controller;
 
-import com.example.projectjava.models.EmployeeList;
-import com.example.projectjava.models.Htrans;
-import com.example.projectjava.models.Jenis;
+import com.example.projectjava.models.*;
 import com.example.projectjava.services.HtransServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,10 @@ public class TransaksiControllerFront {
     HtransServices service;
     @Autowired
     jenisControllerBack jenisControllerBack;
-
+    @Autowired
+    periodeControllerBack periodeControllerBack;
+    @Autowired
+    UserController userController;
     //@RequestMapping("/trans/")
     //public String bukaIndex(Model model){
         //List<Transaksi> daftarTrans = service.getByPeriode();
@@ -34,7 +35,11 @@ public class TransaksiControllerFront {
     public String bukaFormTrans(Model model){
         Htrans baru = new Htrans();
         List< Jenis> jenis = jenisControllerBack.getAllReal();
+        List<Periode> periode = periodeControllerBack.getAllReal();
+        List<User> user = userController.getAllReal();
+        model.addAttribute("periode",periode);
         model.addAttribute("jenis",jenis);
+        model.addAttribute("user",user);
         model.addAttribute("htrans",baru);
         return "createTrans";
     }
@@ -49,8 +54,21 @@ public class TransaksiControllerFront {
         return "createUser";
     }
 
+    @RequestMapping("/createJenis")
+    public String bukaFormJenis(){
+        return "createJenis";
+    }
+
     @RequestMapping("/createBudget")
-    public String bukaFormBudget(){
+    public String bukaFormBudget(Model model){
+        Htrans baru = new Htrans();
+        List< Jenis> jenis = jenisControllerBack.getAllReal();
+        List<Periode> periode = periodeControllerBack.getAllReal();
+        List<User> user = userController.getAllReal();
+        model.addAttribute("periode",periode);
+        model.addAttribute("jenis",jenis);
+        model.addAttribute("user",user);
+        model.addAttribute("htrans",baru);
         return "createBudget";
     }
 

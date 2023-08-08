@@ -2,6 +2,7 @@ package com.example.projectjava.controller;
 
 import com.example.projectjava.models.Jenis;
 import com.example.projectjava.services.JenisServices;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,9 +28,9 @@ public class JenisController {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String saveJenis(Jenis obj) throws Exception {
+    void saveJenis(Jenis obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        return "redirect:/success";
+        response.sendRedirect("/index");
     }
     @GetMapping("/success")
     public ResponseEntity<String> getSuccess() {

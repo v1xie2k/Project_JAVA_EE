@@ -7,23 +7,20 @@
 </head>
 <body>
   <div>
-    <h1>Create Transaksi 2</h1>
+    <h1>Create Transaksi</h1>
 
-
+    <button><a href="index">Back</a></button><br>
     <form action="http://localhost:8080/htrans/save" method="post">
       <label for="user">User</label>
-      <select name="user" id="user" th:each=" user: ${trans}">
-        <option th:value="${user.getId}" th:text="${user.getBulan}"></option>
+      <select name="user" id="user">
+        <option th:each="daftarUser: ${user}" th:value="${daftarUser.getId()}" th:text="${daftarUser.getNama()}" ></option>
       </select>
 
       <br>
 
       <label for="periode">Periode</label>
       <select name="periode" id="periode">
-        <option value="1">2023-Desember</option>
-        <option value="2">2023-September</option>
-        <option value="3">2023-Oktober</option>
-        <option value="4">2023-November</option>
+        <option th:each="daftarPeriode: ${periode}" th:value="${daftarPeriode.getId()}" th:text="${daftarPeriode.getBulan()}+'-'+${daftarPeriode.getTahun()}" ></option>
       </select>
 
       <br>
