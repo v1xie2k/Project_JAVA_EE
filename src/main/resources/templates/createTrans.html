@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div>
+    <h1>Create Transaksi 2</h1>
+
+
+    <form action="http://localhost:8080/htrans/save" method="post">
+      <label for="user">User</label>
+      <select name="user" id="user" th:each=" user: ${trans}">
+        <option th:value="${user.getId}" th:text="${user.getBulan}"></option>
+      </select>
+
+      <br>
+
+      <label for="periode">Periode</label>
+      <select name="periode" id="periode">
+        <option value="1">2023-Desember</option>
+        <option value="2">2023-September</option>
+        <option value="3">2023-Oktober</option>
+        <option value="4">2023-November</option>
+      </select>
+
+      <br>
+
+      <label for="jenis">Jenis</label>
+      <select name="jenis" id="jenis">
+        <option value="1">Uang Makan</option>
+        <option value="2">Donasi V-Tuber</option>
+        <option value="3">Merch V-Tuber</option>
+        <option value="4">Dana V-Tuber</option>
+      </select>
+
+      <input type="hidden" name="status" id="status" value="1">
+
+      <br>
+      <label for="jumlah">Jumlah</label>
+      <input type="text" name="jumlah" id="jumlah">
+
+      <br>
+      <label for="deskripsi">Deskripsi</label>
+      <input type="text" name="deskripsi" id="deskripsi">
+
+      <br>
+      <label for="tanggal">Tanggal</label>
+      <input type="date" name="tanggal" id="tanggal">
+      <br>
+
+      <input type="submit" value="Create">
+    </form>
+
+
+
+  </div>
+</body>
+</html>

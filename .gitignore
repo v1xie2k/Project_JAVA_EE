@@ -40,3 +40,5 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 .application.properties
+.idea/misc.xml
+.idea/dataSources.xml

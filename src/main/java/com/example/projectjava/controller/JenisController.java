@@ -1,9 +1,7 @@
 package com.example.projectjava.controller;
 
 import com.example.projectjava.models.Jenis;
-import com.example.projectjava.models.Periode;
 import com.example.projectjava.services.JenisServices;
-import com.example.projectjava.services.PeriodeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

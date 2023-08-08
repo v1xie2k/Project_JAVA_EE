@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+ <table  class="table" cellpadding="5" cellspacing="0" border="1">
+     <thead>
+     <tr>
+         <th scope="col">id</th>
+         <th scope="col">periode</th>
+         <th scope="col">tanggal</th>
+         <th scope="col">nama_user</th>
+         <th scope="col">pos</th>
+         <th scope="col">dekripsi</th>
+         <th scope="col">budget</th>
+         <th scope="col">transaksi</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr th:each=" daftarTrans: ${htrans}" >
+         <th  scope="row" th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getId()}" class="table-success" ></th>
+         <th  scope="row" th:if="${daftarTrans.getStatus() == 1}"  th:text="${daftarTrans.getId()}" class="table-danger" ></th>
+         <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getPeriode().getId()}" class="table-success"></td>
+         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getPeriode().getId()}" class="table-danger"></td>
+         <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getTanggal()}"  class="table-success"></td>
+         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getTanggal()}" class="table-danger"></td>
+         <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getUser().getNama()}" class="table-success"></td>
+         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getUser().getNama()}" class="table-danger"></td>
+         <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getJenis().getValue()}" class="table-success"></td>
+         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getJenis().getValue()}" class="table-danger"></td>
+         <td th:if="${daftarTrans.getStatus() == 0}"  th:text="${daftarTrans.getDeskripsi()}" class="table-success"></td>
+         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getDeskripsi()}" class="table-danger"></td>
+<!--nominal budget-->
+         <td th:if="${daftarTrans.getStatus() == 0}" th:switch="${daftarTrans.getStatus()}" class="table-success">
+             <span th:case="0" th:text="${#numbers.formatCurrency(daftarTrans.getJumlah())}" ></span>
+         </td>
+
+         <td th:if="${daftarTrans.getStatus() == 1}" th:switch="${daftarTrans.getStatus()}" class="table-danger">
+             <span th:case="0" th:text="${#numbers.formatCurrency(daftarTrans.getJumlah())}" ></span>
+         </td>
+<!--nominal pengeluaran-->
+
+         <td th:switch="${daftarTrans.getStatus()}" th:if="${daftarTrans.getStatus() == 0}" class="table-success">
+             <span th:case="1" th:text="${#numbers.formatCurrency(daftarTrans.getJumlah())}" ></span>
+         </td>
+
+         <td th:switch="${daftarTrans.getStatus()}" th:if="${daftarTrans.getStatus() == 1}" class="table-danger">
+             <span th:case="1" th:text="${#numbers.formatCurrency(daftarTrans.getJumlah())}" ></span>
+         </td>
+     </tr>
+     <tbody>
+ </table>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>
+

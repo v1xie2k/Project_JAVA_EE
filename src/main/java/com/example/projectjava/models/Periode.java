@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @Table(name = "periode")
 @Getter
@@ -17,7 +15,4 @@ public class Periode {
     private String bulan;
     private String tahun;
 
-
-    @OneToMany(mappedBy = "periode")
-    private List<Htrans> transaksis;
 }

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "htrans")
 @Getter
@@ -18,8 +16,10 @@ public class Htrans {
 //    private int periodeId;
 //    private int jenisId;
     private double jumlah;
+    @Column(nullable = true)
     private String deskripsi;
-    private Date tanggal;
+    @Column(nullable = true)
+    private String tanggal;
     private int status;
 
     @ManyToOne
