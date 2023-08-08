@@ -30,10 +30,7 @@
 
       <label for="jenis">Jenis</label>
       <select name="jenis" id="jenis">
-        <option value="1">Uang Makan</option>
-        <option value="2">Donasi V-Tuber</option>
-        <option value="3">Merch V-Tuber</option>
-        <option value="4">Dana V-Tuber</option>
+        <option th:each="daftarJenis: ${jenis}" th:value="${daftarJenis.getId()}" th:text="${daftarJenis.getValue()}" ></option>
       </select>
 
       <input type="hidden" name="status" id="status" value="1">

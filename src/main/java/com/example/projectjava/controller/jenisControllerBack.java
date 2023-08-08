@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -19,9 +21,17 @@ public class jenisControllerBack {
     @Autowired
     JenisServices service;
 
-    @GetMapping("/")
+    @RequestMapping("/getAll")
     public List<Jenis> getAllJenis(){
         return service.getAll();
+    }
+
+    @GetMapping("/")
+    public List<Jenis> getAllReal(){
+        String uri ="http://localhost:8080/jenis/getAll";
+        RestTemplate restTemplate = new RestTemplate();
+        Jenis[] result = restTemplate.getForObject(uri,Jenis[].class);
+        return Arrays.asList(result);
     }
 
     @PostMapping(
