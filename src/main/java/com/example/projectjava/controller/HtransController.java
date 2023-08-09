@@ -57,17 +57,13 @@ public class HtransController {
             catch (Exception ex){
                 return ResponseEntity.ok("Gagal Input ! Pengeluaran berada di luar periode budget yang ada !");
             }
-            response.sendRedirect("/index");
+            return ResponseEntity.ok("Berhasil Input Pengeluaran!");
 
         }
         else{
             service.save(obj);
             return ResponseEntity.ok("Berhasil Input Budget!");
-
         }
-
-        return null;
-
     }
     //ini coba dari https://www.baeldung.com/spring-url-encoded-form-data
     //kalau tidak bisa di comment saja
