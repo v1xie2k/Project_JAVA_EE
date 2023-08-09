@@ -1,16 +1,20 @@
 package com.example.projectjava.controller;
 
 import com.example.projectjava.models.Htrans;
+import com.example.projectjava.models.Periode;
 import com.example.projectjava.services.HtransServices;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -39,6 +43,13 @@ public class HtransController {
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     void saveJenis(Htrans obj, HttpServletResponse response) throws Exception {
+        LocalDate date = LocalDate.parse(obj.getTanggal());
+        String month = date.getMonthValue()+"";
+        String year = date.getYear()+"";
+        Integer idPeriode = Integer.parseInt(year+month);
+        Periode periode = new Periode(idPeriode,month,year);
+        periode.setId(idPeriode);
+        obj.setPeriode(periode);
         service.save(obj);
         response.sendRedirect("/index");
     }

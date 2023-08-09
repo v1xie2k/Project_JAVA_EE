@@ -15,4 +15,13 @@ public class Periode {
     private String bulan;
     private String tahun;
 
+    public Periode(int id, String bulan, String tahun) {
+        this.id = id;
+        this.bulan = bulan;
+        this.tahun = tahun;
+    }
+
+    public Periode() {
+
+    }
 }
