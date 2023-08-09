@@ -6,10 +6,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-Budgeting</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createPeriode">Input Periode</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createUser">Buat User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createJenis">Input Pos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createBudget">Input Budget</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createTrans">Input Pengeluaran</a>
+            </li>
+        </ul>
+    </div>
+</nav>
  <table  class="table" cellpadding="5" cellspacing="0" border="1">
      <thead>
      <tr>
-         <th scope="col">id</th>
+<!--         <th scope="col">id</th>-->
          <th scope="col">periode</th>
          <th scope="col">tanggal</th>
          <th scope="col">nama_user</th>
@@ -21,10 +49,10 @@
      </thead>
      <tbody>
      <tr th:each=" daftarTrans: ${htrans}" >
-         <th  scope="row" th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getId()}" class="table-success" ></th>
-         <th  scope="row" th:if="${daftarTrans.getStatus() == 1}"  th:text="${daftarTrans.getId()}" class="table-danger" ></th>
-         <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getPeriode().getId()}" class="table-success"></td>
-         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getPeriode().getId()}" class="table-danger"></td>
+<!--         <th  scope="row" th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getId()}" class="table-success" ></th>-->
+<!--         <th  scope="row" th:if="${daftarTrans.getStatus() == 1}"  th:text="${daftarTrans.getId()}" class="table-danger" ></th>-->
+         <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getPeriode().getBulan() + '-' + daftarTrans.getPeriode().getTahun()}" class="table-success"></td>
+         <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getPeriode().getBulan() + '-' + daftarTrans.getPeriode().getTahun()}" class="table-danger"></td>
          <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getTanggal()}"  class="table-success"></td>
          <td th:if="${daftarTrans.getStatus() == 1}" th:text="${daftarTrans.getTanggal()}" class="table-danger"></td>
          <td th:if="${daftarTrans.getStatus() == 0}" th:text="${daftarTrans.getUser().getNama()}" class="table-success"></td>
@@ -52,12 +80,6 @@
          </td>
      </tr>
      <tbody>
-
- <button><a href="createTrans">Create Transaksi</a></button>
- <button><a href="createBudget">Tambah Budget</a></button>
- <button><a href="createUser">Create User</a></button>
- <button><a href="createJenis">Create Jenis</a></button>
- <button><a href="createPeriode">Create Periode</a></button>
  </table>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

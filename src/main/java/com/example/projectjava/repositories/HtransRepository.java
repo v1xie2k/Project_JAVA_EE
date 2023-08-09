@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface HtransRepository extends JpaRepository<Htrans, Integer> {
     public List<Htrans> findByUserIdAndPeriodeId(Integer idperiode, Integer iduser);
-
+    List<Htrans> findAllByStatusIsNotNullOrderByPeriodeDescUserAscJenisAscStatusAscTanggalAsc ( );
 }

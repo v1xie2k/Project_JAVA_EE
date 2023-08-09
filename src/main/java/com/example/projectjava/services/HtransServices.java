@@ -25,4 +25,5 @@ public class HtransServices {
     public List<Htrans> getFiltered(Integer idPeriode, Integer idUser){
         return repo.findByUserIdAndPeriodeId(idPeriode, idUser);
     }
+    public List<Htrans> getOrdered(){ return repo.findAllByStatusIsNotNullOrderByPeriodeDescUserAscJenisAscStatusAscTanggalAsc();}
 }

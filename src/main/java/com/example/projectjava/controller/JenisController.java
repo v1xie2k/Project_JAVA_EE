@@ -28,9 +28,9 @@ public class JenisController {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    void saveJenis(Jenis obj, HttpServletResponse response) throws Exception {
+    ResponseEntity<String> saveJenis(Jenis obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        response.sendRedirect("/index");
+        return ResponseEntity.ok("Berhasil input pos!");
     }
     @GetMapping("/success")
     public ResponseEntity<String> getSuccess() {

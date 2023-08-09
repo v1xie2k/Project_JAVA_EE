@@ -1,7 +1,6 @@
 package com.example.projectjava.controller;
 
 
-import com.example.projectjava.models.Jenis;
 import com.example.projectjava.models.Periode;
 import com.example.projectjava.services.PeriodeServices;
 import jakarta.servlet.http.HttpServletResponse;
@@ -44,9 +43,10 @@ public class periodeControllerBack {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    void savePeriode(Periode obj, HttpServletResponse response) throws Exception {
+    ResponseEntity<String> savePeriode(Periode obj, HttpServletResponse response) throws Exception {
+        obj.setId(Integer.parseInt(obj.getTahun()+obj.getBulan()));
         service.save(obj);
-        response.sendRedirect("/index");
+        return ResponseEntity.ok("Berhasil input periode!");
     }
 
     @GetMapping("/success")

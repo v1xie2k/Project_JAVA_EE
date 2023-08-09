@@ -3,18 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-<h1>Create Jenis</h1>
-<button><a href="index">Back</a></button><br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-Budgeting</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createPeriode">Input Periode</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createUser">Buat User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createJenis">Input Pos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createBudget">Input Budget</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createTrans">Input Pengeluaran</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1>Input Pos</h1>
+
+
+
 <form action="http://localhost:8080/jenis/save" method="post">
+    <div class="form-group row">
+        <label for="value" class="col-sm-2 col-form-label">Pos</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="value" placeholder="Pos"  name="value">
+        </div>
+    </div>
 
-  <label for="value">Jenis</label>
-  <input type="text" name="value" id="value">
 
-  <br>
 
-  <input type="submit" value="Create">
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Input</button>
+        </div>
+    </div>
 </form>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </html>

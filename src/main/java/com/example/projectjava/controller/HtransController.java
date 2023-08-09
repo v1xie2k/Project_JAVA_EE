@@ -5,7 +5,6 @@ import com.example.projectjava.models.Periode;
 import com.example.projectjava.services.HtransServices;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,7 +25,7 @@ public class HtransController {
 // ini endpoint api nya
     @RequestMapping("/getAll")
     public List<Htrans> getAllJenis(){
-        return service.getAll();
+        return service.getOrdered();
     }
 
 // ini memanggil endpoint api
@@ -42,16 +40,34 @@ public class HtransController {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    void saveJenis(Htrans obj, HttpServletResponse response) throws Exception {
-        LocalDate date = LocalDate.parse(obj.getTanggal());
-        String month = date.getMonthValue()+"";
-        String year = date.getYear()+"";
-        Integer idPeriode = Integer.parseInt(year+month);
-        Periode periode = new Periode(idPeriode,month,year);
-        periode.setId(idPeriode);
-        obj.setPeriode(periode);
-        service.save(obj);
-        response.sendRedirect("/index");
+    ResponseEntity<String> saveJenis(Htrans obj, HttpServletResponse response) throws Exception {
+
+        if(obj.getStatus()==1){
+            LocalDate date = LocalDate.parse(obj.getTanggal());
+            String month = date.getMonthValue()+"";
+            String year = date.getYear()+"";
+            Integer idPeriode = Integer.parseInt(year+month);
+            Periode periode = new Periode();
+            periode.setId(idPeriode);
+            obj.setPeriode(periode);
+            try {
+                service.save(obj);
+
+            }
+            catch (Exception ex){
+                return ResponseEntity.ok("Gagal Input ! Pengeluaran berada di luar periode budget yang ada !");
+            }
+            response.sendRedirect("/index");
+
+        }
+        else{
+            service.save(obj);
+            return ResponseEntity.ok("Berhasil Input Budget!");
+
+        }
+
+        return null;
+
     }
     //ini coba dari https://www.baeldung.com/spring-url-encoded-form-data
     //kalau tidak bisa di comment saja

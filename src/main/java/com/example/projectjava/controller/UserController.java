@@ -1,6 +1,5 @@
 package com.example.projectjava.controller;
 
-import com.example.projectjava.models.Jenis;
 import com.example.projectjava.models.User;
 import com.example.projectjava.services.UserServices;
 import jakarta.servlet.http.HttpServletResponse;
@@ -51,9 +50,9 @@ public class UserController {
     @PostMapping(
             path = "/save",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    void saveUser(User obj, HttpServletResponse response) throws Exception {
+    ResponseEntity<String> saveUser(User obj, HttpServletResponse response) throws Exception {
         service.save(obj);
-        response.sendRedirect("/index");
+        return ResponseEntity.ok("Berhasil tambah user!");
     }
 
     @GetMapping("/success")

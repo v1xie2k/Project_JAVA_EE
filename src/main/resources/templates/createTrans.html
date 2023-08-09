@@ -4,52 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
 </head>
 <body>
   <div>
-    <h1>Create Transaksi</h1>
+    <h1>Input Pengeluaran</h1>
 
-    <button><a href="index">Back</a></button><br>
+
+
+
     <form action="http://localhost:8080/htrans/save" method="post">
-      <label for="user">User</label>
-      <select name="user" id="user">
-        <option th:each="daftarUser: ${user}" th:value="${daftarUser.getId()}" th:text="${daftarUser.getNama()}" ></option>
-      </select>
+      <div class="form-group row">
 
-      <br>
+        <label for="user">User</label>
+        <select name="user" id="user">
+          <option class="custom-select mr-sm-2 mb-sm-2" th:each="daftarUser: ${user}" th:value="${daftarUser.getId()}" th:text="${daftarUser.getNama()}" ></option>
+        </select>
 
-<!--      <label for="periode">Periode</label>-->
-<!--      <select name="periode" id="periode">-->
-<!--        <option th:each="daftarPeriode: ${periode}" th:value="${daftarPeriode.getId()}" th:text="${daftarPeriode.getBulan()}+'-'+${daftarPeriode.getTahun()}" ></option>-->
-<!--      </select>-->
+      </div>
 
-<!--      <br>-->
+<!--      <div class="form-group row">-->
 
-      <label for="jenis">Jenis</label>
-      <select name="jenis" id="jenis">
-        <option th:each="daftarJenis: ${jenis}" th:value="${daftarJenis.getId()}" th:text="${daftarJenis.getValue()}" ></option>
-      </select>
+<!--        <label for="periode">Periode</label>-->
+<!--        <select class="custom-select mr-sm-2 mb-sm-2" name="periode" id="periode">-->
+<!--          <option th:each="daftarPeriode: ${periode}" th:value="${daftarPeriode.getId()}" th:text="${daftarPeriode.getBulan()}+'-'+${daftarPeriode.getTahun()}" ></option>-->
+<!--        </select>-->
+
+<!--      </div>-->
+      <div class="form-group row ">
+        <label for="jenis">Pos</label>
+        <select class="custom-select mr-sm-2 mb-sm-2" name="jenis" id="jenis">
+          <option th:each="daftarJenis: ${jenis}" th:value="${daftarJenis.getId()}" th:text="${daftarJenis.getValue()}" ></option>
+        </select>
+
+      </div>
 
       <input type="hidden" name="status" id="status" value="1">
 
-      <br>
-      <label for="jumlah">Jumlah</label>
-      <input type="text" name="Nominal" id="jumlah">
+      <div class="form-group row ">
+        <label for="deskripsi">Deskripsi</label>
+        <input type="text" name="deskripsi" id="deskripsi" class="mr-sm-2 mb-sm-2">
+      </div>
+      <div class="form-group row ">
+        <label for="Jumlah"  class="col-sm-2 col-form-label">Nominal</label>
 
-      <br>
-      <label for="deskripsi">Deskripsi</label>
-      <input type="text" name="deskripsi" id="deskripsi">
+        <input type="text" name="Jumlah" id="Jumlah" class="mr-sm-2 mb-sm-2">
+      </div>
 
-      <br>
-      <label for="tanggal">Tanggal</label>
-      <input type="date" name="tanggal" id="tanggal">
-      <br>
+      <div class="form-group row">
+        <label for="tanggal">Tanggal</label>
+        <input type="date" name="tanggal" id="tanggal" class="mr-sm-2 mb-sm-2">
+      </div>
 
-      <input type="submit" value="Create">
+
+
+
+
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Input</button>
+        </div>
+      </div>
     </form>
+
 
 
 
   </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </html>

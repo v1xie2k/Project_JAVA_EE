@@ -10,18 +10,9 @@ import lombok.Setter;
 @Setter
 public class Periode {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate by mysql
     private int id;
     private String bulan;
     private String tahun;
 
-    public Periode(int id, String bulan, String tahun) {
-        this.id = id;
-        this.bulan = bulan;
-        this.tahun = tahun;
-    }
 
-    public Periode() {
-
-    }
 }
